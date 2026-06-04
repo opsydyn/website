@@ -1,0 +1,67 @@
+---
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import NavBar from '../components/NavBar.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Opsydyn — Open-source developer tools"
+  description="Open-source tools for architecture, quality, and the terminal. TypeScript and Rust."
+>
+  <NavBar />
+  <main>
+    <div class="site-container">
+      <section class="hero">
+        <h1 data-page-title>
+          Precise tools<br />for<br />professionals. 
+        </h1>
+        <p class="tagline">
+          Open-source tools for visualising architecture, enforcing quality,
+          and building for the terminal. TypeScript and Rust.
+        </p>
+        <div class="actions">
+          <a href="/projects" class="action-primary">
+            <Icon name="blocks" size={16} /> View projects
+          </a>
+          <a
+            href="https://github.com/opsydyn"
+            class="action-secondary"
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="git-branch" size={16} /> GitHub
+          </a>
+        </div>
+      </section>
+
+      <section class="page-section prose">
+        <h2>Map what you build</h2>
+        <p>
+          Architecture decisions rot when they live only in people's heads.
+          <code>c4-board</code> gives you a visual C4 modelling board built on Tauri
+          and Astro. <code>tech-radar-web</code> tracks your technology choices as a
+          living document. <code>tech-radar-tui</code> brings ADR authoring and radar
+          management to the terminal — keyboard-driven, written in Rust.
+        </p>
+        <h2>Raise the bar</h2>
+        <p>
+          <code>elysia-spectral</code> enforces OpenAPI quality at the Elysia framework
+          level, catching contract drift before it ships. <code>planetnik</code> makes
+          large TypeScript codebases navigable through static analysis.
+          <code>crumbs-css</code> brings React Native's styling ergonomics to the
+          browser with a vanilla-extract-shaped API.
+        </p>
+        <h2>Open source, MIT</h2>
+        <p>
+          Everything is MIT-licensed and developed in the open by{' '}
+          <a href="https://github.com/alanpcurrie" target="_blank" rel="noopener">Alan Currie</a>.
+          If you're going to build a system around a tool, you should be able to read it.
+          All projects live in public repositories — issues, discussions, and
+          contributions are welcome.
+        </p>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>

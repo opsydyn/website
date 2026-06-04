@@ -1,0 +1,104 @@
+---
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import NavBar from '../components/NavBar.astro';
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  {
+    icon: 'blocks',
+    title: 'c4-board',
+    href: 'https://github.com/opsydyn/c4-board',
+    lang: 'TypeScript',
+    body: 'Tauri + Astro systems design board for C4 architecture diagrams.',
+  },
+  {
+    icon: 'target',
+    title: 'tech-radar-web',
+    href: 'https://github.com/opsydyn/tech-radar-web',
+    lang: 'TypeScript',
+    body: 'Astro-based web tech radar for tracking and visualising technology choices.',
+  },
+  {
+    icon: 'terminal',
+    title: 'tech-radar-tui',
+    href: 'https://github.com/opsydyn/tech-radar-tui',
+    lang: 'Rust',
+    body: 'Keyboard-driven terminal UI for creating ADRs and Tech Radar blips with quadrant/ring metadata and radar visualisation.',
+  },
+  {
+    icon: 'circuit-board',
+    title: 'planetnik',
+    href: 'https://github.com/opsydyn/planetnik',
+    lang: 'TypeScript',
+    body: 'Code analysis tool for understanding and navigating large TypeScript codebases.',
+  },
+  {
+    icon: 'shapes',
+    title: 'crumbs-css',
+    href: 'https://github.com/opsydyn/crumbs-css',
+    lang: 'TypeScript',
+    body: 'React Native style authoring with a familiar vanilla-extract-shaped API.',
+  },
+  {
+    icon: 'check-double',
+    title: 'elysia-spectral',
+    href: 'https://github.com/opsydyn/elysia-spectral',
+    lang: 'TypeScript',
+    body: 'Spectral OpenAPI linting plugin for the Elysia framework.',
+  },
+  {
+    icon: 'music',
+    title: 'AMP808',
+    href: 'https://github.com/opsydyn/AMP808',
+    lang: 'Rust',
+    body: 'Ratatui-based terminal media player inspired by cliamp and Winamp.',
+  },
+];
+---
+
+<Layout
+  title="Projects — Opsydyn"
+  description="Open-source tools from Opsydyn — architecture, tooling, and developer experience."
+>
+  <NavBar />
+  <main>
+    <div class="site-container">
+      <section class="hero">
+        <h1 data-page-title>Projects</h1>
+        <p class="tagline">
+          Open-source tools for architecture, developer experience, and
+          the terminal. MIT-licensed.
+        </p>
+        <div class="actions">
+          <a
+            href="https://github.com/opsydyn"
+            class="action-primary"
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="git-branch" size={16} /> GitHub
+          </a>
+        </div>
+      </section>
+
+      <section class="page-section">
+        <div class="card-grid">
+          {projects.map(({ icon, title, href, lang, body }) => (
+            <a href={href} class="card" target="_blank" rel="noopener">
+              <div class="card-header">
+                <div class="icon"><Icon name={icon} size={20} /></div>
+                <span class={`lang lang--${lang.toLowerCase()}`}>{lang}</span>
+              </div>
+              <p class="title">{title}</p>
+              <p class="body">{body}</p>
+              <span class="card-link">view on github →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+

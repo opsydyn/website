@@ -1,0 +1,56 @@
+---
+import '../styles/global.css';
+import '../styles/site.css';
+import { darkTheme, lightTheme } from '../styles/theme.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Open-source developer tools for architecture, quality, and the terminal.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class={darkTheme}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}icon.png`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline define:vars={{ darkTheme, lightTheme }}>
+      const stored = localStorage.getItem('opsydyn-theme');
+      if (stored === 'light') {
+        document.documentElement.classList.remove(darkTheme);
+        document.documentElement.classList.add(lightTheme);
+      }
+    </script>
+  </head>
+  <body>
+    <slot />
+    <script is:inline define:vars={{ darkTheme, lightTheme }}>
+      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        const isLight = document.documentElement.classList.contains(lightTheme);
+        if (isLight) {
+          document.documentElement.classList.remove(lightTheme);
+          document.documentElement.classList.add(darkTheme);
+          localStorage.setItem('opsydyn-theme', 'dark');
+        } else {
+          document.documentElement.classList.remove(darkTheme);
+          document.documentElement.classList.add(lightTheme);
+          localStorage.setItem('opsydyn-theme', 'light');
+        }
+      });
+    </script>
+  </body>
+</html>

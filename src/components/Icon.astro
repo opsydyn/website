@@ -1,0 +1,20 @@
+---
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 20, class: className } = Astro.props;
+
+const svgPath = resolve(process.cwd(), 'node_modules/pixelarticons/svg', `${name}.svg`);
+const raw = readFileSync(svgPath, 'utf-8').replace(
+  /width="\d+" height="\d+"/,
+  `width="${size}" height="${size}"`
+);
+---
+
+<Fragment set:html={raw} class={className} />

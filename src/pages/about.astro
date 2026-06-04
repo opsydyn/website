@@ -1,0 +1,72 @@
+---
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import NavBar from '../components/NavBar.astro';
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  { icon: 'cpu',            label: 'Rust',            href: 'https://www.rust-lang.org/' },
+  { icon: 'terminal',       label: 'Ratatui',         href: 'https://ratatui.rs/' },
+  { icon: 'star',           label: 'Astro',           href: 'https://astro.build/' },
+  { icon: 'zap',            label: 'Effect',          href: 'https://effect.website/' },
+  { icon: 'shapes',         label: 'Vanilla Extract', href: 'https://vanilla-extract.style/' },
+  { icon: 'brackets-angle', label: 'TypeScript',      href: 'https://www.typescriptlang.org/' },
+  { icon: 'server',         label: 'Elysia',          href: 'https://elysiajs.com/' },
+  { icon: 'colors-swatch',  label: 'US Graphics',     href: 'https://usgraphics.com/' },
+];
+---
+
+<Layout
+  title="About — Opsydyn"
+  description="My open-source developer tools. Strong opinions about tools and aesthetics."
+>
+  <NavBar />
+  <main>
+    <div class="site-container">
+      <section class="hero">
+        <h1 data-page-title>About</h1>
+        <p class="tagline">
+          My open-source tools. Strong opinions about tools and aesthetics.
+        </p>
+      </section>
+
+      <section class="page-section prose">
+        <h2>What I do</h2>
+        <p>
+          I build open-source developer tools — architecture diagramming,
+          tech radars, API quality, code analysis, and terminal applications.
+          Everything is MIT-licensed, auditable, and developed in the open.
+          If you're going to build a system around a tool, you should be able
+          to read it.
+        </p>
+        <p>
+          I'm drawn to tools that respect the developer: precise, composable,
+          and honest about what they do. No runtime magic. No hidden abstractions.
+          The terminal is a first-class platform.
+        </p>
+
+        <h2>Projects I like</h2>
+      </section>
+
+      <section class="stack-grid">
+        {projects.map(({ icon, label, href }) => (
+          <a href={href} class="stack-item" target="_blank" rel="noopener">
+            <Icon name={icon} size={16} />
+            <span>{label}</span>
+          </a>
+        ))}
+      </section>
+
+      <section class="page-section prose">
+        <h2>Open source</h2>
+        <p>
+          All projects live in public repositories on{' '}
+          <a href="https://github.com/alanpcurrie" target="_blank" rel="noopener">GitHub</a>.
+          Issues, discussions, and pull requests are welcome.
+        </p>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+

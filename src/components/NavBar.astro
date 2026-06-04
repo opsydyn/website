@@ -1,0 +1,42 @@
+---
+import Icon from './Icon.astro';
+
+const pageModules = import.meta.glob('../pages/*.astro');
+
+const links = Object.keys(pageModules)
+  .filter(path => !path.endsWith('/index.astro'))
+  .map(path => {
+    const slug = path.split('/pages/')[1].replace('.astro', '');
+    return { href: `/${slug}`, label: slug };
+  })
+  .sort((a, b) => a.label.localeCompare(b.label));
+
+const { pathname } = Astro.url;
+---
+
+<header class="header">
+  <div class="site-container">
+    <a href={import.meta.env.BASE_URL} class="site-title">
+      <img src={`${import.meta.env.BASE_URL}icon.png`} alt="" width="28" height="28" />
+      OPSYDYN
+    </a>
+    <nav>
+      {links.map(({ href, label }) => (
+        <a href={href} aria-current={pathname.startsWith(href) ? 'page' : undefined}>
+          {label}
+        </a>
+      ))}
+      <button id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+        <Icon name="invert" size={16} />
+      </button>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-title img {
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    flex: none;
+  }
+</style>
